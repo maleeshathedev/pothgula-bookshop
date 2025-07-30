@@ -32,7 +32,7 @@ import {
   Building,
   Package
 } from 'lucide-react';
-import { formatDate, generateId, formatCurrency } from '../../lib/utils';
+import { generateId, formatCurrency } from '../../lib/utils';
 
 export default function SuppliersPage() {
   const { t } = useTranslation();

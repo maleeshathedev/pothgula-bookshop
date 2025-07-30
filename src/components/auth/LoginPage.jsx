@@ -32,7 +32,8 @@ export default function LoginPage() {
       setLoading(true);
       await adminLogin(username, password);
       navigate('/dashboard');
-    } catch (error) {
+    } catch (err) {
+      console.error('Login error:', err);
       setError('Invalid credentials. Use Admin/12345 for demo access.');
     } finally {
       setLoading(false);
