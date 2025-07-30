@@ -1,0 +1,6 @@
+{
+  "moderate": ["high", "critical"],
+  "high": ["critical"],
+  "critical": [],
+  "skip-dev": true
+}
