@@ -12,6 +12,12 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.js'],
     css: true,
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/tests/e2e/**', // Exclude E2E tests from unit tests
+      '**/*.e2e.spec.js'
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
@@ -20,7 +26,8 @@ export default defineConfig({
         'src/test/',
         '**/*.d.ts',
         '**/*.config.js',
-        'dist/'
+        'dist/',
+        'tests/e2e/**'
       ],
       thresholds: {
         global: {

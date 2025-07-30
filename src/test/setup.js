@@ -30,14 +30,33 @@ vi.mock('react-router-dom', async () => {
 })
 
 // Mock i18next
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key) => key,
-    i18n: {
-      changeLanguage: vi.fn(),
-      language: 'en',
+vi.mock('react-i18next', async () => {
+  const actual = await vi.importActual('react-i18next')
+  return {
+    ...actual,
+    useTranslation: () => ({
+      t: (key) => key,
+      i18n: {
+        changeLanguage: vi.fn(),
+        language: 'en',
+      },
+    }),
+    initReactI18next: {
+      type: '3rdParty',
+      init: vi.fn(),
     },
-  }),
+  }
+})
+
+// Mock i18next core
+vi.mock('i18next', () => ({
+  default: {
+    use: vi.fn().mockReturnThis(),
+    init: vi.fn().mockReturnThis(),
+    t: (key) => key,
+    changeLanguage: vi.fn(),
+    language: 'en',
+  },
 }))
 
 // Mock ResizeObserver
