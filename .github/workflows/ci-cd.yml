@@ -104,22 +104,10 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run unit tests
-        run: |
-          if [ -f "package.json" ] && grep -q '"test"' package.json; then
-            pnpm test
-          else
-            echo "No test script found, creating basic test structure"
-            mkdir -p src/__tests__
-            echo "Tests will be added here" > src/__tests__/placeholder.test.js
-          fi
+        run: pnpm test:run
 
       - name: Generate test coverage
-        run: |
-          if [ -f "package.json" ] && grep -q '"test:coverage"' package.json; then
-            pnpm run test:coverage
-          else
-            echo "No test coverage script found"
-          fi
+        run: pnpm test:coverage
 
   # Job 4: Build application
   build:
